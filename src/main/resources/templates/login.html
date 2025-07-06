@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dungeon Game Login</title>
+</head>
+<body>
+<h1>Enter Your Name to Begin</h1>
+<form action="/game/start" method="post">
+    <input type="text" name="username" placeholder="Your name..." required />
+    <button type="submit">Start Game</button>
+</form>
+</body>
+</html>

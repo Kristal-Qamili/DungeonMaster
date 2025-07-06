@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Text Adventure - The End</title>
+</head>
+<body>
+<h2 th:text="'Player: ' + ${username}"></h2>
+
+<p th:text="${message}"></p>
+
+<p th:text="'Deaths so far: ' + ${deaths}"></p>
+
+<form action="#" th:action="@{/game/reset}" method="get">
+    <button type="submit">Play Again</button>
+</form>
+</body>
+</html>

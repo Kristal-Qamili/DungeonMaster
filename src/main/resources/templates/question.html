@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Text Adventure - Question</title>
+</head>
+<body>
+<h2 th:text="'Player: ' + ${username}"></h2>
+<p th:text="${question.text}"></p>
+
+<form action="#" th:action="@{/game/choice}" method="post">
+    <div th:each="choice : ${question.choices}">
+        <input type="radio"
+               th:id="${choice.label}"
+               th:name="choiceId"
+               th:value="${choice.label}" required />
+        <label th:for="${choice.label}" th:text="${choice.label + '. ' + choice.text}"></label>
+        <br/>
+    </div>
+    <button type="submit">Choose</button>
+</form>
+
+<form action="#" th:action="@{/game/reset}" method="get" style="margin-top: 20px;">
+    <button type="submit">Restart Game</button>
+</form>
+</body>
+</html>
