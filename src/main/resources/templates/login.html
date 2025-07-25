@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
 <head>
-    <title>Dungeon Game Login</title>
+    <title>Login</title>
 </head>
 <body>
-<h1>Enter Your Name to Begin</h1>
-<form action="/game/start" method="post">
-    <input type="text" name="username" placeholder="Your name..." required />
-    <button type="submit">Start Game</button>
-</form>
+<div layout:fragment="content">
+    <h2>Welcome to the Dungeon</h2>
+    <form th:action="@{/game/start}" method="post">
+        <label for="username">Adventurer name:</label>
+        <input type="text" name="username" id="username" required>
+        <button type="submit">Enter</button>
+    </form>
+</div>
 </body>
 </html>

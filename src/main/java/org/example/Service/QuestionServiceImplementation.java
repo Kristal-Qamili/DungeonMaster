@@ -2,17 +2,17 @@ package org.example.Service;
 
 
 import org.example.Entity.Question;
-import org.example.REPO.QuestionREPO;
+import org.example.REPO.InMemoryQuestionREPO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class QuestionServiceImplementation implements QuestionService {
 
-    private QuestionREPO repository;
+    private final InMemoryQuestionREPO repository;
 
     @Autowired
-    public QuestionServiceImplementation(QuestionREPO repository) {
+    public QuestionServiceImplementation(InMemoryQuestionREPO repository) {
         this.repository = repository;
     }
 

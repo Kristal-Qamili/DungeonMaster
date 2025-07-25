@@ -1,17 +1,47 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
 <head>
-    <title>Text Adventure - The End</title>
+    <title>Victory</title>
 </head>
 <body>
-<h2 th:text="'Player: ' + ${username}"></h2>
+<div layout:fragment="content">
+<audio id="victory-sound" autoplay>
+    <source src="/audio/victory.mp3" type="audio/mpeg">
+</audio>
 
-<p th:text="${message}"></p>
 
-<p th:text="'Deaths so far: ' + ${deaths}"></p>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const bgMusic = document.getElementById("background-music");
+        const victorySound = document.getElementById("victory-sound");
 
-<form action="#" th:action="@{/game/reset}" method="get">
-    <button type="submit">Play Again</button>
-</form>
+        // Pause background music if it exists
+        if (bgMusic && !bgMusic.paused) {
+            bgMusic.pause();
+        }
+
+        const tryPlayVictory = () => {
+            victorySound.play().catch(() => {
+                document.body.addEventListener("click", () => {
+                    victorySound.play();
+                }, { once: true });
+            });
+        };
+
+        tryPlayVictory();
+    });
+</script>
+    <div class="scroll-box scroll">
+        <h2 th:text="'Victory, ' + ${username} + '!'"></h2>
+        <p th:text="${message}"></p>
+        <p th:text="'Total deaths: ' + ${deathCount}"></p>
+
+        <form action="/game/restart" method="post">
+            <button type="submit">Begin Anew</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>

@@ -635,43 +635,43 @@ public class InMemoryQuestionREPO implements QuestionREPO {
                 ), false, false));
         questions.put("death_1", new Question("death_1",
                 "The wall crumbles as you knock, burying you beneath rubble. Your adventure ends here.",
-                List.of(), true, false));
+                List.of(), true, true));
 
         questions.put("death_2", new Question("death_2",
                 "The orb explodes violently as you kick it, flames engulfing you instantly.",
-                List.of(), true, false));
+                List.of(), true, true));
 
         questions.put("death_3", new Question("death_3",
                 "Reading the forbidden tome aloud summons an otherworldly horror that devours you.",
-                List.of(), true, false));
+                List.of(), true, true));
 
         questions.put("death_4", new Question("death_4",
                 "Your reflection reaches out and pulls you into the mirror’s dark realm. You vanish forever.",
-                List.of(), true, false));
+                List.of(), true, true));
 
         questions.put("death_5", new Question("death_5",
                 "A fiery blast erupts from the metal door as you open it, incinerating you instantly.",
-                List.of(), true, false));
+                List.of(), true, true));
 
         questions.put("death_6", new Question("death_6",
                 "Touching the frame triggers hidden blades slicing your hand clean off.",
-                List.of(), true, false));
+                List.of(), true, true));
 
         questions.put("death_7", new Question("death_7",
                 "Something answers your call, and darkness envelops you before you can react.",
-                List.of(), true, false));
+                List.of(), true, true));
 
         questions.put("death_8", new Question("death_8",
                 "Reaching for the unseen creature under water, it drags you down to a watery grave.",
-                List.of(), true, false));
+                List.of(), true, true));
 
         questions.put("death_9", new Question("death_9",
                 "The red key melts in your hand, burning you with searing heat before you drop dead.",
-                List.of(), true, false));
+                List.of(), true, true));
 
         questions.put("death_10", new Question("death_10",
                 "The skeletal hand crushes your arm as you attempt to smash it, ending your journey.",
-                List.of(), true, false));
+                List.of(), true, true));
 
         questions.put("death_11", new Question("death_11",
                 "You step onto the narrow ledge but lose your footing. The ground gives way beneath you and you fall into the abyss below. Darkness swallows you whole.\n\nGAME OVER.",
@@ -706,7 +706,7 @@ public class InMemoryQuestionREPO implements QuestionREPO {
                 List.of(), true, true));
         questions.put("end", new Question("end",
                 "You find the exit and step into the daylight, your adventure complete.",
-                List.of(), false, true));
+                List.of(), true, false));
     }
     @Override
     public Optional<Question> findById(String id) {

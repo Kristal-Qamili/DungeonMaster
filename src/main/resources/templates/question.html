@@ -1,26 +1,43 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
 <head>
-    <title>Text Adventure - Question</title>
+    <title>Question</title>
 </head>
 <body>
-<h2 th:text="'Player: ' + ${username}"></h2>
-<p th:text="${question.text}"></p>
 
-<form action="#" th:action="@{/game/choice}" method="post">
-    <div th:each="choice : ${question.choices}">
-        <input type="radio"
-               th:id="${choice.label}"
-               th:name="choiceId"
-               th:value="${choice.label}" required />
-        <label th:for="${choice.label}" th:text="${choice.label + '. ' + choice.text}"></label>
-        <br/>
+<div layout:fragment="content">
+    <div class="title" th:text="'Adventurer ' + ${username} + ', what will you do?'"></div>
+
+    <div class="card">
+        <!-- Question text -->
+        <p th:text="${question.text}"></p>
+
+        <!-- Death screen -->
+        <div th:if="${isDeath}">
+            <p th:text="'You have died ' + ${deathCount} + ' times before reaching the end.'"></p>
+            <form action="/game/restart" method="post">
+                <button type="submit">Begin Anew</button>
+            </form>
+        </div>
+        <div th:if="${lastChoice != null}">
+            <p>You chose: <span th:text="${lastChoice}"></span></p>
+        </div>
+
+
+        <!-- Normal choices -->
+        <div th:if="${!isDeath}">
+            <div th:each="choice : ${question.choices}">
+                <form th:action="@{/game/choice}" method="post">
+                    <input type="hidden" name="choiceId" th:value="${choice.label}"/>
+                    <button type="submit" th:text="${choice.label + '. ' + choice.text}"></button>
+                </form>
+            </div>
+
+        </div>
     </div>
-    <button type="submit">Choose</button>
-</form>
+</div>
 
-<form action="#" th:action="@{/game/reset}" method="get" style="margin-top: 20px;">
-    <button type="submit">Restart Game</button>
-</form>
 </body>
 </html>

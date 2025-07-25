@@ -2,17 +2,12 @@ package org.example.Entity;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table(name="Choices")
+
 public class Choice {
-    @Id
     private String id;
     private String label;
     private String text;
     private String nextQuestionId;
-    @ManyToOne
-    @JoinColumn(name = "question_id")
-    private Question question;
 
     public String getLabel() {
         return label;

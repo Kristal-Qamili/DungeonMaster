@@ -4,20 +4,12 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-@Entity
-@Table(name = "Questions")
 public class Question {
-    @Id
     private String id;
-     @Column(nullable = false)
     private String text;
-    @Column(nullable = false)
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Choice> choices = new ArrayList<>();
-    @Column(nullable = false)
-    private boolean isEnd = true;
-    @Column(nullable = false)
-    private boolean isDeath = true;
+    private List<Choice> choices;
+    private boolean isEnd ;
+    private boolean isDeath ;
 
 
     public Question(){
@@ -59,8 +51,8 @@ public class Question {
     }
 
     public boolean isDeath() {
-        return "death".equals(id) || (isEnd && (choices == null || choices.isEmpty()));
-    }
+            return id != null && id.startsWith("death");
 
+    }
 }
 
