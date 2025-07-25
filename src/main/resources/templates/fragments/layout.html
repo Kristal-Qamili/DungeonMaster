@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Dungeon Master</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('/images/dungeon.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'MedievalSharp', cursive;
+            color: #f4f4f4;
+            text-shadow: 1px 1px 3px #000;
+            padding: 2rem;
+
+        }
+        button, label {
+            font-family: 'MedievalSharp', cursive;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+
+<audio id="background-music" loop>
+    <source src="/audio/theme.mp3" type="audio/mpeg">
+</audio>
+<button id="toggle-music">Toggle Music</button>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const bgMusic = document.getElementById("background-music");
+
+        if (!bgMusic) return;
+
+        const musicEnabled = localStorage.getItem("musicEnabled") !== "false";
+
+        if (musicEnabled) {
+            const lastTime = localStorage.getItem("musicTime");
+            if (lastTime) {
+                bgMusic.currentTime = parseFloat(lastTime);
+            }
+
+            bgMusic.play().catch(() => {
+                document.body.addEventListener("click", () => {
+                    bgMusic.play();
+                }, { once: true });
+            });
+
+            // Save progress before unload
+            window.addEventListener("beforeunload", () => {
+                localStorage.setItem("musicTime", bgMusic.currentTime);
+            });
+        }
+    });
+</script>
+
+
+<audio id="click-sound" src="/audio/click.mp3" preload="auto"></audio>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const clickSound = document.getElementById('click-sound');
+
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function (e) {
+                if (!form.checkValidity()) return;
+
+                if (clickSound) {
+                    e.preventDefault();
+                    clickSound.currentTime = 0;
+                    clickSound.play();
+
+                    setTimeout(() => {
+                        form.submit();
+                    }, 200);
+                }
+            });
+        });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const audio = document.getElementById("background-music");
+
+        if (localStorage.getItem("musicEnabled") === "true") {
+            audio.play().catch(() => {
+                document.body.addEventListener("click", () => {
+                    audio.play();
+                }, { once: true });
+            });
+        }
+
+        const toggle = document.getElementById("toggle-music");
+        if (toggle) {
+            toggle.addEventListener("click", () => {
+                if (audio.paused) {
+                    audio.play();
+                    localStorage.setItem("musicEnabled", "true");
+                } else {
+                    audio.pause();
+                    localStorage.setItem("musicEnabled", "false");
+                }
+            });
+        }
+    });
+</script>
+
+<header>
+    <h1>Dungeon Master</h1>
+    <hr>
+</header>
+
+<main layout:fragment="content">
+    <p>Welcome to the dungeon.</p>
+</main>
+
+<footer>
+    <hr>
+    <p>&copy; 2025 Dungeon Master Inc.</p>
+</footer>
+</body>
+</html>

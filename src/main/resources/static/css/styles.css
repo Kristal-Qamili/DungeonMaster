@@ -1,0 +1,68 @@
+button {
+    background-color: #a67c52;
+    color: #fffbe6;
+    border: 3px solid #5c3a1e;
+    border-radius: 12px;
+    padding: 0.75rem 1.5rem;
+    font-family: 'MedievalSharp', cursive;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    transition: all 0.2s ease-in-out;
+    text-shadow: 1px 1px 2px black;
+}
+
+button:hover {
+    background-color: #8b5e3c;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #ffcc66;
+}
+#fdf0c2
+.card p, .title, .scroll-box {
+    font-family: 'MedievalSharp', cursive;
+    font-weight: bold; /* Makes it slightly thicker */
+    background:  #fdf0c2;
+    padding: 2rem;
+    border-radius: 30px;
+    border: 6px solid #a97c50;
+    color: #3b2e1e;
+    text-shadow: 1px 1px 0 #f4f1de;
+    box-shadow:
+            inset 0 0 10px rgba(0,0,0,0.2),
+            0 10px 30px rgba(0,0,0,0.4),
+            -8px -8px 20px rgba(0,0,0,0.1) inset,
+            8px 8px 20px rgba(0,0,0,0.1) inset;
+    margin-bottom: 2rem;
+    position: relative;
+}
+@keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulseRed {
+    0% { background-color: rgba(255,0,0,0.2); }
+    50% { background-color: rgba(255,0,0,0.05); }
+    100% { background-color: rgba(255,0,0,0.2); }
+}
+
+.scroll {
+    animation: fadeIn 2s ease forwards;
+    padding: 2rem;
+    border: 5px solid #8b5e3c;
+    border-radius: 20px;
+    max-width: 700px;
+    margin: 3rem auto;
+    font-weight: bold;
+    font-family: 'Cinzel', serif;
+    color: #3b2f2f;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    position: relative;
+}
+.scroll-box {
+    background: url('../images/scroll_texture.jpg') no-repeat center center;
+    background-size: cover;
+}
+body.scroll-background.death {
+    animation: pulseRed 3s infinite;
+}

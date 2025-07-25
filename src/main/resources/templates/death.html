@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>You Died</title>
+</head>
+<body>
+<div layout:fragment="content">
+<div class="scroll-box scroll">
+    <h2 th:text="'You have perished, ' + ${username} + '...'"></h2>
+    <p th:text="${message}"></p>
+    <p th:text="'Total deaths: ' + ${deathCount}"></p>
+
+    <form action="/game/restart" method="post">
+        <button type="submit">Begin Anew</button>
+    </form>
+</div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const scroll = document.querySelector(".scroll");
+        if (scroll) {
+            setInterval(() => {
+                scroll.style.boxShadow = `0 0 ${Math.floor(Math.random() * 30)}px rgba(255, 140, 0, 0.5)`;
+            }, 500);
+        }
+    });
+</script>
+</body>
+</html>
